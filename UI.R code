@@ -1,0 +1,33 @@
+library(shiny)
+library(plotly)
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+
+    # Application title
+    headerPanel("Effect of Vitamin C on Tooth Growth in Guinea Pigs"),
+
+    # Sidebar with a slider input for number of doses
+    sidebarLayout(
+        sidebarPanel(
+            selectInput("supp","Supplement Type",
+                        choices = c("VC","OJ")),
+            
+            sliderInput("doses",
+                        "Dose Levels of Vitamin C:",
+                        min = 0,
+                        max = 2,
+                        value=1,
+                        step=.5)
+                               
+           
+        ),
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            h3("Graphical Presentation"),
+            plotOutput("hist"),
+           h3("Graphical Presentation Using plotly"),
+            plotlyOutput("bar")
+        )
+    )
+))
